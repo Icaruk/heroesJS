@@ -24,13 +24,13 @@ class Heroe {
 	
 	
 	
-	usaSkill (idxSkill, objetivo) {
+	useSkill (idxSkill, objetivo) {
 		/*
 			Usa la skill 0, 1 o 2
 			
-			this.usaSkill (0, objHeroeEnemigo)
-			this.usaSkill (0, objHeroeEnemigo)
-			this.usaSkill (0, objHeroeEnemigo)
+			this.useSkill (0, objHeroeEnemigo)
+			this.useSkill (0, objHeroeEnemigo)
+			this.useSkill (0, objHeroeEnemigo)
 		*/
 		
 		// Selecciono la skill

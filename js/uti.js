@@ -1,5 +1,7 @@
 
 const cl = console.log.bind();
+const cw = console.warn.bind();
+const ce = console.error.bind();
 
 
 const uti = {
