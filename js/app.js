@@ -69,16 +69,14 @@ const juego = {
 	
 	
 	
-	updateHud () {
+	updateHud (idJugador) {
 		/*
-			juego.updateHud();
+			juego.updateHud(1);
 		*/
 		
 		// Saco heroes de slots
-		let p1_h1 = this.getHeroe (1, 1);
-		let p1_h2 = this.getHeroe (1, 2);
-		let p2_h1 = this.getHeroe (2, 1);
-		let p2_h2 = this.getHeroe (2, 2);
+		let heroe1 = this.getHeroe (idJugador, 1);
+		let heroe2 = this.getHeroe (idJugador, 2);
 		
 		
 		// Saco héroes activos
@@ -86,28 +84,26 @@ const juego = {
 		let suHeroe = this.getSuHeroe();
 		
 		
-		// Slots
-		ele_p1_slot1.innerText = p1_h1.nombre;
-		ele_p1_slot2.innerText = p1_h2.nombre;
-		
-		ele_p2_slot1.innerText = p2_h1.nombre;
-		ele_p2_slot2.innerText = p2_h2.nombre;
-		
-		
-		// Skills
-		
-		cl(suHeroe);
-		cl(suHeroe.skills);
-		cl(suHeroe.skills[0]);
-		cl(suHeroe.skills[0].nombre);
-		
-		ele_p1_b1.innerText = miHeroe.skills[0].nombre;
-		ele_p1_b2.innerText = miHeroe.skills[1].nombre;
-		ele_p1_b3.innerText = miHeroe.skills[2].nombre;
-		
-		ele_p2_b1.innerText = suHeroe.skills[0].nombre;
-		ele_p2_b2.innerText = suHeroe.skills[1].nombre;
-		ele_p2_b3.innerText = suHeroe.skills[2].nombre;
+		// Pongo mis slots y mis skills
+		if (idJugador == 1) {
+			
+			ele_p1_slot1.innerText = heroe1.nombre;
+			ele_p1_slot2.innerText = heroe2.nombre;
+			
+			ele_p1_b1.innerText = miHeroe.skills[0].nombre;
+			ele_p1_b2.innerText = miHeroe.skills[1].nombre;
+			ele_p1_b3.innerText = miHeroe.skills[2].nombre;			
+			
+		} else {
+			
+			ele_p2_slot1.innerText = heroe1.nombre;
+			ele_p2_slot2.innerText = heroe2.nombre;
+			
+			ele_p2_b1.innerText = miHeroe.skills[0].nombre;
+			ele_p2_b2.innerText = miHeroe.skills[1].nombre;
+			ele_p2_b3.innerText = miHeroe.skills[2].nombre;			
+			
+		};
 		
 	},
 	
@@ -137,7 +133,7 @@ const juego = {
 		
 		
 		// Actualizo HUD
-		this.updateHud();
+		this.updateHud(idJugador);
 		
 		
 		// Paso turno
@@ -281,7 +277,6 @@ juego.sacaHeroe (1, 1, false);
 juego.sacaHeroe (2, 1, false);
 
 cl (juego);
-
 cl (juego.getMiHeroe());
 
 
