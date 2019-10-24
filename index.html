@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>HeroesJS</title>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
@@ -15,40 +15,160 @@
 
 <body>
 	
-	<h1>HeroesJS</h1>
-	
-	
-	<div class="container">
+	<!-- --- Zona 1 --- -->
+	<div class="seccion" id="fase1">
 		
-		<div class="row">
-			<div class="col">
-				
-				<button class="btn btn-primary btn-block" id="p1_b1">Skill 1</button>
-				<button class="btn btn-primary btn-block" id="p1_b2">Skill 2</button>
-				<button class="btn btn-primary btn-block" id="p1_b3">Skill 3</button>
-				<button class="btn btn-warning btn-block" id="p1_slot1">Héroe 1</button>
-				<button class="btn btn-warning btn-block" id="p1_slot2">Héroe 2</button>				
-				
-			</div>
-			
-			<div class="col">
-				
-				<button class="btn btn-primary btn-block" id="p2_b1">Skill 1</button>
-				<button class="btn btn-primary btn-block" id="p2_b2">Skill 2</button>
-				<button class="btn btn-primary btn-block" id="p2_b3">Skill 3</button>
-				<button class="btn btn-warning btn-block" id="p2_slot1">Héroe 1</button>
-				<button class="btn btn-warning btn-block" id="p2_slot2">Héroe 2</button>					
-				
+		<div class="cenXY">
+			<h2>Selección de héroes</h2>
+		</div>
+		
+		<div class="cenXY">
+			<div class="flex" id="cajaHeroes">
+				Aquí van los héroes por JS
 			</div>
 		</div>
 		
+		
+		
+		<div class="cenXY mt-5">
+			
+			
+			
+			<div class="col50">
+				
+				<div class="cenXY">
+					<h1>Selección P1</h1>
+				</div>		
+				
+				<div class="cenXY" id="p1_seleccion1">
+					Heroe 1
+				</div>
+				<div class="cenXY" id="p1_seleccion2">
+					Heroe 2
+				</div>
+
+			</div>
+			
+			<div class="col50">
+				
+				<div class="cenXY">
+					<h1>Selección P2</h1>
+				</div>	
+				
+				<div class="cenXY" id="p2_seleccion1">
+					Heroe 1
+				</div>
+				<div class="cenXY" id="p2_seleccion2">
+					Heroe 2
+				</div>
+
+			</div>
+			
+		</div>
+		
+		
+		
+
+		
 	</div>
 	
-
+	
+	
+	<!-- --- Zona 2 --- -->
+	<div class="seccion" id="fase2">
+		
+		<div class="cenXY">
+			<h2>Combate</h2>
+		</div>
+		
+		
+		<div class="cenXY mt-5">
+			
+			<div class="col50">
+				
+				<div class="">
+					
+					<div class="cenX">
+						<img id="imgHeroe1" src="">
+					</div>
+					
+					<div class="cenX">
+						<div class="fondoBarra">
+							<div class="barra" id="barraVida1"></div>
+						</div>
+					</div>
+					
+					<div class="cenXY">
+						<p id="infoHeroe1">Aquí va la vida</p>
+					</div>
+					
+				</div>
+				
+				
+				<div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p1_b1">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p1_b2">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p1_b3">qwe</button> </div>
+					
+					<div class="cenX"> <button class="botonSkill mb-1" id="p1_slot1">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p1_slot2">qwe</button> </div>
+				</div>
+				
+			</div>
+			
+			
+			
+			<div class="col50">
+				
+				<div class="cenX">
+					<img id="imgHeroe2" src="">
+				</div>
+				
+				<div class="cenX">
+					<div class="fondoBarra">
+						<div class="barra" id="barraVida2"></div>
+					</div>
+				</div>
+				
+				<div class="cenXY">
+					<p id="infoHeroe2">Aquí va la vida</p>
+				</div>
+				
+				<div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p2_b1">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p2_b2">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p2_b3">qwe</button> </div>
+					
+					<div class="cenX"> <button class="botonSkill mb-1" id="p2_slot1">qwe</button> </div>
+					<div class="cenX"> <button class="botonSkill mb-1" id="p2_slot2">qwe</button> </div>
+				</div>
+				
+				
+			</div>
+			
+		</div>
+		
+		
+		
+		
+	</div>
+	
+	
+	
+	<!-- --- Zona 3 --- -->
+	<div class="seccion" id="fase3">
+		
+		<h2>Post combate</h2>
+		
+		asdfghjklñ
+		
+		
+	</div>
+	
 	
 	---
 	
-
+	
 	
 	
 	

@@ -102,7 +102,7 @@ AtaqueMagico = new Skill (
 	"MAG", 1
 );
 BolaDeFuego = new Skill (
-	"BolaDeFuego", "",
+	"Bola de fuego", "",
 	400, "INT", 0.5,
 	"MAG", 3
 );

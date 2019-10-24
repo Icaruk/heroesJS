@@ -15,6 +15,8 @@ class Heroe {
 		this.gananciaInt = gananciaInt;
 		
 		this.vida = vida;
+		this.vidaMax = vida;
+		
 		this.defFisica = defFisica;
 		this.defMagica = defMagica;
 		
@@ -89,3 +91,15 @@ heroe_lina = new Heroe (
 	]
 );
 
+
+
+// Almaceno todos los héroes
+var allHeroes = [
+	
+	heroe_axe,
+	
+	heroe_clinkz,
+	
+	heroe_lina
+	
+];
