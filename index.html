@@ -15,7 +15,7 @@
 
 <body>
 	
-	<!-- --- Zona 1 --- -->
+	<!-- --- Fase 1 --- -->
 	<div class="seccion" id="fase1">
 		
 		<div class="cenXY">
@@ -24,7 +24,7 @@
 		
 		<div class="cenXY">
 			<div class="flex" id="cajaHeroes">
-				Aquí van los héroes por JS
+				Aquí van los héroes seleccionables por JS
 			</div>
 		</div>
 		
@@ -40,9 +40,12 @@
 					<h1>Selección P1</h1>
 				</div>		
 				
-				<img src="" class="cenXY" id="p1_seleccion1">
-				<img src="" class="cenXY" id="p1_seleccion2">
-				
+				<div class="cenXY">
+					<img src="" class="cenXY" id="p1_seleccion1">
+				</div>
+				<div class="cenXY">
+					<img src="" class="cenXY" id="p1_seleccion2">
+				</div>
 
 			</div>
 			
@@ -52,8 +55,12 @@
 					<h1>Selección P2</h1>
 				</div>	
 				
-				<img src="" class="cenXY" id="p2_seleccion1">
-				<img src="" class="cenXY" id="p2_seleccion2">
+				<div class="cenXY">
+					<img src="" class="cenXY" id="p2_seleccion1">
+				</div>
+				<div class="cenXY">
+					<img src="" class="cenXY" id="p2_seleccion2">
+				</div>
 
 			</div>
 			
@@ -67,7 +74,7 @@
 	
 	
 	
-	<!-- --- Zona 2 --- -->
+	<!-- --- Fase 2 --- -->
 	<div class="seccion" id="fase2">
 		
 		<div class="cenXY">
@@ -87,7 +94,8 @@
 					
 					<div class="cenX">
 						<div class="fondoBarra">
-							<div class="barra" id="barraVida1"></div>
+							<div class="barraVida" id="barraVida1"></div>
+							<div class="barraMana" id="barraMana1"></div>
 						</div>
 					</div>
 					
@@ -103,9 +111,12 @@
 					<div class="cenX"> <button class="botonSkill mb-1" id="p1_b2">qwe</button> </div>
 					<div class="cenX"> <button class="botonSkill mb-1" id="p1_b3">qwe</button> </div>
 					
-					<div class="cenX"> <button class="botonSkill mb-1" id="p1_slot1">qwe</button> </div>
-					<div class="cenX"> <button class="botonSkill mb-1" id="p1_slot2">qwe</button> </div>
+					<div class="cenXY">
+						<img src="" id="p1_slot">
+					</div>
+
 				</div>
+				
 				
 			</div>
 			
@@ -119,7 +130,8 @@
 				
 				<div class="cenX">
 					<div class="fondoBarra">
-						<div class="barra" id="barraVida2"></div>
+						<div class="barraVida" id="barraVida2"></div>
+						<div class="barraMana" id="barraMana2"></div>
 					</div>
 				</div>
 				
@@ -132,23 +144,30 @@
 					<div class="cenX"> <button class="botonSkill mb-1" id="p2_b2">qwe</button> </div>
 					<div class="cenX"> <button class="botonSkill mb-1" id="p2_b3">qwe</button> </div>
 					
-					<div class="cenX"> <button class="botonSkill mb-1" id="p2_slot1">qwe</button> </div>
-					<div class="cenX"> <button class="botonSkill mb-1" id="p2_slot2">qwe</button> </div>
+					<div class="cenXY">
+						<img src="" id="p2_slot">
+					</div>
+					
 				</div>
 				
 				
 			</div>
 			
+			
+			
 		</div>
-		
-		
+			
+			<!-- DEBUG -->
+			<div class="cenXY">
+				<button class="botonSkill" onclick="juego.nextTurn()">DEBUG: pasaturno</button>
+			</div>			
 		
 		
 	</div>
 	
 	
 	
-	<!-- --- Zona 3 --- -->
+	<!-- --- Fase 3 --- -->
 	<div class="seccion" id="fase3">
 		
 		<h2>Post combate</h2>

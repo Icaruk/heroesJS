@@ -1,8 +1,8 @@
-
-const cl = console.log.bind();
-const cw = console.warn.bind();
-const ce = console.error.bind();
-
+/*
+const console.log = console.log.bind();
+const console.warning = console.warn.bind();
+const console.error = console.error.bind();
+*/
 
 const uti = {
 	
@@ -15,6 +15,10 @@ const uti = {
 		
 		return document.getElementById(idElemento);
 	},
+	
+	
+	
+	
 	
 	minMax (n, min, max) {
 		/*
@@ -118,8 +122,8 @@ const uti = {
 v = 0;
 while (v < 3) {
 
-	cl("Hola");
-	uti.delayed (2000, ()=> {cl("Adios")});
+	console.log("Hola");
+	uti.delayed (2000, ()=> {console.log("Adios")});
 	
 	v++;
 };

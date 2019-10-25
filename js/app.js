@@ -1,8 +1,17 @@
 
 /*
-	- No poder pulsar los botones del otro en mi turno.	
-	- Copiar el héroe al seleccionarlo para que no esté por referencia.
+	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
+	
+	- Cambiar botones de skills y slots por imagenes div.
+	- Gestionar muerte (cuando muera, desactivar el slot del muerto y hacer cambio de heroe).
+	
+	- Actualizar los botones de la skills según coste de maná.
+	
+	- Que cada ataque normal genere maná.
+	- Que cada ronda genere maná según inteligencia.
+	
+	- Mostrar el daño daño realizado en el centro por cada héroe.
 	
 */
 
@@ -12,24 +21,25 @@
 const ele_p1_b1 = uti.$("p1_b1");
 const ele_p1_b2 = uti.$("p1_b2");
 const ele_p1_b3 = uti.$("p1_b3");
-const ele_p1_slot1 = uti.$("p1_slot1");
-const ele_p1_slot2 = uti.$("p1_slot2");
+const ele_p1_slot = uti.$("p1_slot");
 const ele_p2_b1 = uti.$("p2_b1");
 const ele_p2_b2 = uti.$("p2_b2");
 const ele_p2_b3 = uti.$("p2_b3");
-const ele_p2_slot1 = uti.$("p2_slot1");
-const ele_p2_slot2 = uti.$("p2_slot2");
+const ele_p2_slot = uti.$("p2_slot");
 
 
 
-// Obj juego
+// Objs
 const juego = {
 	
 	turno: 1, // 1 o 2
 	turnosTotales: 0,
 	
 	p1_heroeActivo: null,
+	p1_heroeInactivo: null,
+	
 	p2_heroeActivo: null,
+	p2_heroeInactivo: null,
 	
 	p1_slot1: null,
 	p1_slot2: null,
@@ -58,101 +68,63 @@ const juego = {
 			juego.selectHero (1, 1, heroe_lina);
 		*/
 		
+		// Obtengo la key del slot
 		let key = this.getKey (idJugador, idSlot);
+		
+		
+		// Clono el héroe
+		// let heroeClonado = new Heroe(); 	// declaro todo undefined
+		// heroeClonado = {... objHeroe}; // copio las propiedades
+		
+		
+		// Lo almaceno en el slot
 		this[key] = objHeroe;
 		
 		
-		cl(`El jugador ${idJugador} ha puesto a ${objHeroe.nombre} en su slot ${idSlot}`);
+		// Le pongo id única
+		objHeroe.id = uniqueHeroId;
+		uniqueHeroId ++ ;
+		
+		
+		// Log
+		console.log(`El jugador ${idJugador} ha puesto a ${objHeroe.nombre} en su slot ${idSlot}`);
 		
 	},
 	
 	
 	
-	getHero (idJugador, slot) {
+	swapActiveHero (idJugador) {
 		/*
-			Devuelve el héroe que tiene cierto jugador en cierto slot.
-			
-			let res = juego.getHero (1, 1);
+			Pone como activo el héroe que tengo guardado.
+			juego.swapActiveHero (1);
+			juego.swapActiveHero (2);
 		*/
 		
-		let key = this.getKey (idJugador, slot);
-		return this[key];
+		// Obtengo slot
+		let keySlotActivo = `p${idJugador}_heroeActivo`;
+		let keySlotInactivo = `p${idJugador}_heroeInactivo`;
+		
+				
+		// Heroes
+		let heroeActivo = juego[keySlotActivo];
+		let heroeInactivo = juego[keySlotInactivo];	
+		
+		
+		// Intercambio
+		juego[keySlotActivo] = heroeInactivo;
+		juego[keySlotInactivo] = heroeActivo;
 		
 	},
 	
 	
 	
-	updateHud (idJugador = 0) {
-		/*
-			Actualiza el HUD en la partida.
-			
-			juego.updateHud(1); // actualiza el HUD del jugador 1
-			juego.updateHud(2); // actualiza el HUD del jugador 2
-			juego.updateHud(0); // actualiza el HUD de todos
-		*/
-		
-		
-		if (idJugador === 0) {
-			
-			juego.updateHud(1);
-			juego.updateHud(2);
-			
-		} else {
-		
-			
-			// Saco heroes de slots
-			let heroe1 = this.getHero (idJugador, 1);
-			let heroe2 = this.getHero (idJugador, 2);
-			
-			
-			// Saco héroes activos
-			let miHeroe = this.getMyHero(idJugador);
-			// let suHeroe = this.getHisHero();
-			
-			
-			// Pongo mis slots y mis skills
-			if (idJugador == 1) {
-				
-				ele_p1_slot1.innerText = heroe1.nombre;
-				ele_p1_slot2.innerText = heroe2.nombre;
-				
-				ele_p1_b1.innerText = miHeroe.skills[0].nombre;
-				ele_p1_b2.innerText = miHeroe.skills[1].nombre;
-				ele_p1_b3.innerText = miHeroe.skills[2].nombre;
-				
-				uti.$("imgHeroe1").src = miHeroe.img;
-				uti.$("infoHeroe1").innerText = `Vida: ${miHeroe.vida}`;
-				
-				uti.$("barraVida1").style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`
-				
-			} else {
-				
-				ele_p2_slot1.innerText = heroe1.nombre;
-				ele_p2_slot2.innerText = heroe2.nombre;
-				
-				ele_p2_b1.innerText = miHeroe.skills[0].nombre;
-				ele_p2_b2.innerText = miHeroe.skills[1].nombre;
-				ele_p2_b3.innerText = miHeroe.skills[2].nombre;
-				
-				uti.$("imgHeroe2").src = miHeroe.img;
-				uti.$("infoHeroe2").innerText = `Vida: ${miHeroe.vida}`;
-				
-				uti.$("barraVida2").style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`
-				
-			};
-			
-			
-		};
-		
-	},
-	
-	
-	
-	setHeroAsActive (idJugador, idSlot, pasaTurno = true) {
+	setHeroAsActive (idJugador, idSlot, asActive = true, pasaTurno = true) {
 		/*
 			Cierto jugador saca su héroe de cierto slot para que luche.
 			
-			juego.setHeroAsActive (1, 2); // pone el héroe del slot 2 a luchar
+			juego.setHeroAsActive (1, 2); 			// pone el héroe del slot 2 como activo
+			juego.setHeroAsActive (1, 2, false); 	// pone el héroe del slot 2 como inactivo
+			juego.setHeroAsActive (1, 2, true, false); 	// pone el héroe del slot 2 como activo y pasa turno
 		*/
 		
 		// Obtengo el héroe que quiero
@@ -160,62 +132,41 @@ const juego = {
 		
 		
 		// Obtengo slot
-		let keySlot = "p1_heroeActivo";
+		let keySlotActivo = `p${idJugador}_heroeActivo`;
+		let keySlotInactivo = `p${idJugador}_heroeInactivo`;
 		
-		if (idJugador == 2) {
-			keySlot = "p2_heroeActivo";
-		};
-		
+		console.log( keySlotActivo );
+		console.log( keySlotInactivo );
+		console.log( asActive );
 		
 		// Pregunto si estoy sacando el que ya tengo activo
-		if (heroe == this[keySlot]) {
-			ce("Se ha intentado sacar un héroe que ya estaba fuera.");
+		if (heroe == this[keySlotActivo]) {
+			console.error("Se ha intentado sacar un héroe que ya estaba fuera.");
 			return;
 		};
 		
 		
-		// Lo pongo
-		this[keySlot] = heroe;
+		// Saco como activo (o inactivo) el heroe que he pedido
+		if (asActive) {
+			this[keySlotActivo] = heroe;
+		} else {
+			this[keySlotInactivo] = heroe;
+		};
 		
 		
 		// Log
-		cl(`El jugador ${idJugador} ha sacado a su héroe ${idSlot} (${heroe.nombre})`);
+		console.log(`El jugador ${idJugador} ha sacado a su héroe ${idSlot} (${heroe.nombre})`);
 		
 		
 		// Paso turno
-		this.updateHud(idJugador);
+		hud.updateHud(idJugador);
 		
 		
+		// ¿Actualizo HUD?
 		if (pasaTurno) {
-			this.nextTurn(); // al pasar turno actualizo HUD
+			this.nextTurn();
 		};
 		
-		
-	},
-	
-	
-	
-	nextTurn() {
-		/*
-			Pasa al siguiente turno.
-			
-			juego.nextTurn();
-		*/
-		
-		if (this.turno == 1) {
-			this.turno = 2;
-		} else {
-			this.turno = 1;
-		};
-		
-		
-		// Actualizo HUD
-		this.updateHud(this.turno);	
-		
-		
-		// Sumo turno	
-		this.turnosTotales ++;
-		cl ("Turno: " + this.turno);
 		
 	},
 	
@@ -229,17 +180,13 @@ const juego = {
 			juego.getEnemyId();
 		*/
 		
-		let idJugadorEnemigo = 2;					// turno 1
+		let idJugadorEnemigo = 2;							// turno 1
 		if (this.turno == 2) {idJugadorEnemigo = 1};		// turno 2
 		
 		
 		return idJugadorEnemigo;
 		
 	},
-	
-	
-	
-	// ------------------------
 	
 	
 	
@@ -264,6 +211,75 @@ const juego = {
 		*/
 		
 		return juego[`p${this.getEnemyId()}_heroeActivo`]
+	},		
+	
+	
+	getHero (idJugador, slot) {
+		/*
+			Devuelve el héroe que tiene cierto jugador en cierto slot.
+			
+			let res = juego.getHero (1, 1);
+		*/
+		
+		let key = this.getKey (idJugador, slot);
+		return this[key];
+		
+	},
+	
+	
+	
+	getInactiveHero (idJugador) {
+		/*
+			Devuelve el héroe inactivo que tiene cierto jugador en cierto slot.
+			
+			let res = juego.getHero (1, 1);
+		*/
+		
+		let key = this.getKey (idJugador, slot);
+		return this[key];
+		
+	},	
+	
+	
+	// ------------------------
+	
+	
+	
+	nextTurn() {
+		/*
+			Pasa al siguiente turno.
+			
+			juego.nextTurn();
+		*/
+		
+		if (this.turno == 1) {
+			this.turno = 2;
+		} else {
+			this.turno = 1;
+		};
+		
+		
+		// Actualizo HUD
+		hud.updateHud(this.turno);	
+		
+		
+		// Sumo turno
+		this.turnosTotales ++;
+		console.log ("Turno de: " + this.turno);
+		
+		
+		// Aumento stats
+		this.getMyHero().gainStats();
+		this.getHisHero().gainStats();
+		
+		console.log( this.getMyHero() );
+		console.log( this.getHisHero() );
+		
+		
+		// Actualizo los botones de la skills según el turno
+		hud.updateSkills();
+		
+		
 	},	
 	
 	
@@ -283,11 +299,19 @@ const juego = {
 		let suHeroe = juego.getHisHero();
 		
 		
+		// Compruebo si tengo maná
+		if (! miHeroe.hasManaToUse(idSkill)) {
+			console.log ( `${miHeroe.nombre} ha intentado usar una habilidad, pero no tenía mana.` ); 
+			return;
+		};
+		
+		
 		// Uso la habilidad
 		miHeroe.useSkill (idSkill, suHeroe);
 		
 		
 		// Paso turno
+		hud.updateHud(juego.turno)
 		juego.nextTurn();
 		
 		
@@ -312,7 +336,7 @@ const fase = {
 			fase.setPhase(1); // fase 1
 		*/
 		
-		let fase = "fase" + idFase;
+		let fase = "fase" + idFase; // genero "fase1"
 		let secciones = ["fase1", "fase2", "fase3"];
 		
 		
@@ -335,9 +359,17 @@ const fase = {
 	
 	clickSlot(idxHeroe) {
 		
+		// Blur al héroe que acabo de seleccionar
+		uti.$(`imgHeroe_${idxHeroe}`).classList.add("blur");
+		
+		
+		// Y lo desactivo
+		uti.$(`divHeroe_${idxHeroe}`).onclick = "";
+		
+		
 		// Saco key de nSlot_pX
 		let keyNSlot = `nSlot_p${this.turnoSeleccion}`; // genero nSlot_p1
-		cl(keyNSlot);
+		
 		
 		// Saco obj del héroe seleccionado
 		let heroe = allHeroes[idxHeroe];
@@ -370,21 +402,23 @@ const fase = {
 		// Termino la fase de selección
 		if (this.nSlot_p1 >= 3 && this.nSlot_p2 >= 3) {
 			
-			// Saco el héroe del slot 1 de cada jugador
-			juego.setHeroAsActive (1, 1, false);
-			juego.setHeroAsActive (2, 1, false);			
+			// Pongo heroes activos e inactivos
+			juego.setHeroAsActive (1, 1);			// slot 1 activo
+			juego.setHeroAsActive (1, 2, false);	// slot 2 inactivo
+			
+			// juego.setHeroAsActive (2, 1, false);
+			// juego.setHeroAsActive (2, 2, false);
 			
 			
 			// Actualizo HUD
-			juego.updateHud(0);
+			hud.updateHud(0);
+			hud.updateSkills();
 			
 			
 			// Paso de fase
 			fase.setPhase(2);
 			
 		};
-		
-		
 		
 		
 	},
@@ -397,7 +431,7 @@ const fase = {
 			fase.drawHeroes();
 		*/
 		
-		let zona1 = uti.$("cajaHeroes"); // contenedor de los héroes seleccionables
+		let caja = uti.$("cajaHeroes"); // contenedor de los héroes seleccionables
 		
 		
 		// Itero por todos los héroes y concateno string
@@ -407,9 +441,9 @@ const fase = {
 		for (let _x of allHeroes) {
 			
 			strHtml +=
-			`<div onclick="fase.clickSlot(${idx})">
+			`<div onclick="fase.clickSlot(${idx})" id="divHeroe_${idx}">
 				<div class="nombreHeroe">${_x.nombre}</div>
-				<img src="${_x.img}">
+				<img src="${_x.img}" id="imgHeroe_${idx}">
 			</div>`;
 			
 			
@@ -419,7 +453,7 @@ const fase = {
 		
 		
 		// Pinto
-		zona1.innerHTML = strHtml;
+		caja.innerHTML = strHtml;
 		
 	},
 	
@@ -428,19 +462,122 @@ const fase = {
 
 
 
+const hud = {
+	
+	enableButton(enabled, ele) {
+		/*
+			Activa o desactiva un botón y le da el aspecto desactivado.
+			
+			hud.enableButton(true, elemento);
+			hud.enableButton(false, elemento);
+		*/
+		
+		ele.disabled = !enabled;
+		
+		
+		if (enabled) {
+			ele.classList.remove("botonDesactivado");
+		} else {
+			ele.classList.add("botonDesactivado");
+		};
+		
+	},
+	
+	
+	
+	updateHud (idJugador = 0) {
+		/*
+			Actualiza el HUD en la partida.
+			
+			hud.updateHud(1); // actualiza el HUD del jugador 1
+			hud.updateHud(2); // actualiza el HUD del jugador 2
+			hud.updateHud(0); // actualiza el HUD de todos
+		*/
+		
+		
+		if (idJugador === 0) {
+			
+			this.updateHud(1);
+			this.updateHud(2);
+			
+		} else {
+		
+			
+			// Saco heroes de slots
+			let heroe1 = juego.getHero (idJugador, 1);
+			let heroe2 = juego.getHero (idJugador, 2);
+			
+			
+			// Saco héroes activos
+			let miHeroe = juego.getMyHero(idJugador);
+			// let suHeroe = this.getHisHero();
+			
+			
+			// Pongo mis slots y mis skills
+			// uti.$(`p${idJugador}_slot1`).innerText = heroe1.nombre;
+			// uti.$(`p${idJugador}_slot2`).innerText = heroe2.nombre;
+			
+			uti.$(`p${idJugador}_b1`).innerText = miHeroe.skills[0].nombre;
+			uti.$(`p${idJugador}_b2`).innerText = miHeroe.skills[1].nombre;
+			uti.$(`p${idJugador}_b3`).innerText = miHeroe.skills[2].nombre;
+			
+			uti.$(`imgHeroe${idJugador}`).src = miHeroe.img;
+			uti.$(`infoHeroe${idJugador}`).innerText = `
+				Vida: ${miHeroe.vida}
+				Mana: ${miHeroe.mana}
+			`;
+			
+			uti.$(`barraVida${idJugador}`).style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			uti.$(`barraMana${idJugador}`).style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			
+		};
+		
+	},
+	
+	
+	
+	updateSkills() {
+		/*
+			En el turno 1 desactiva los botones del jugador 2, y viceversa.
+			hud.updateSkills();
+		*/
+		
+		// Listo los botones 
+		let arrBotones = [
+			["p1_b1", "p1_b2", "p1_b3", "p1_slot"],
+			["p2_b1", "p2_b2", "p2_b3", "p2_slot"]
+		];
+		
+		
+		// Activo mis botones botones, porque es mi turno
+		for (let _x of (arrBotones[juego.turno - 1]) ) {
+			hud.enableButton(true, uti.$(_x));
+		};
+		
+		
+		// Deshabilito los botones del otro
+		for (let _x of (arrBotones[juego.getEnemyId() - 1]) ) {
+			hud.enableButton(false, uti.$(_x));
+		};
+		
+	},
+	
+	
+}
+
+
+
 
 // EHs
 ele_p1_b1.addEventListener		("click", ()=> {juego.pressSkill(0)});
 ele_p1_b2.addEventListener		("click", ()=> {juego.pressSkill(1)});
 ele_p1_b3.addEventListener		("click", ()=> {juego.pressSkill(2)});
-ele_p1_slot1.addEventListener	("click", ()=> {juego.setHeroAsActive(1, 1)});
-ele_p1_slot2.addEventListener	("click", ()=> {juego.setHeroAsActive(1, 2)});
+ele_p1_slot.addEventListener	("click", ()=> {juego.swapActiveHero (1)});
 
 ele_p2_b1.addEventListener		("click", ()=> {juego.pressSkill(0)});
 ele_p2_b2.addEventListener		("click", ()=> {juego.pressSkill(1)});
 ele_p2_b3.addEventListener		("click", ()=> {juego.pressSkill(2)});
-ele_p2_slot1.addEventListener	("click", ()=> {juego.setHeroAsActive(2, 1)});
-ele_p2_slot2.addEventListener	("click", ()=> {juego.setHeroAsActive(2, 2)});
+ele_p2_slot.addEventListener	("click", ()=> {juego.swapActiveHero (2)});
 
 
 // Empiezo en fase 1

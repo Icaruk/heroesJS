@@ -1,26 +1,87 @@
 
+var uniqueHeroId = 1;
+
+
+
 class Heroe {
 	
-	constructor (nombre, img, str, agi, int, gananciaStr, gananciaAgi, gananciaInt, vida, defFisica, defMagica, skills) {
+	constructor (
+		nombre, img,
+		str, agi, int,
+		gananciaStr, gananciaAgi, gananciaInt,
+		vida, defFisica, defMagica,
+		skills
+	) {
 		
 		this.nombre = nombre;
 		this.img = img;
 		
-		this.str = str;
+		this.str = str; // estos 3 variarán
 		this.agi = agi;
 		this.int = int;
+		this.strBase = str; // estos 3 no
+		this.agiBase = agi;
+		this.intBase = int;
 		
 		this.gananciaStr = gananciaStr;
 		this.gananciaAgi = gananciaAgi;
 		this.gananciaInt = gananciaInt;
 		
-		this.vida = vida;
-		this.vidaMax = vida;
+		this.vida = vida; 		// esto variará
+		this.vidaMax = vida; 	// esto no
 		
 		this.defFisica = defFisica;
 		this.defMagica = defMagica;
 		
 		this.skills = skills;
+		
+		this.mana = 100; 		// esto variará
+		this.manaMax = 100; 	// esto no
+		
+	};
+	
+	
+	
+	hasManaToUse (idxSkill) {
+		/*
+			Devuelve si tiene mana para lanzar la habilidad.
+			this.hasManaToUse(objKill);
+		*/
+		
+		// Selecciono la skill
+		let skill = this.skills[idxSkill];
+		
+		
+		// Return		
+		return (this.mana >= skill.costeMana);
+		
+	};
+	
+	
+	
+	addMana (n) {
+		/*
+			Cambia el maná del héroe.
+			
+			this.addMana(20);
+			this.addMana(-20);
+		*/
+		
+		this.mana = uti.minMax ( this.mana + n, 0, this.manaMax );
+		
+	};
+	
+	
+	
+	gainStats() {
+		/*
+			Incrementa los stats del héroe según sus ganacias personales.
+			this.gainStats();
+		*/
+		
+		this.str += this.gananciaStr;
+		this.agi += this.gananciaAgi;
+		this.int += this.gananciaInt;
 		
 	};
 	
@@ -39,13 +100,18 @@ class Heroe {
 		let skill = this.skills[idxSkill];
 		
 		
+		// Gasto mana
+		this.addMana( - skill.costeMana);
+		
+		
 		// Calculo el ataque que tengo con esa skill
 		let atk = skill.getAtk(this);
 		
 		
 		// Quito vida
 		objetivo.vida -= atk;
-		cl (`${this.nombre} causa ${atk} de daño a ${objetivo.nombre}. Sobrevivió con ${objetivo.vida} de vida.`);
+		
+		console.log (`${this.nombre} causa ${atk} de daño a ${objetivo.nombre}. Sobrevivió con ${objetivo.vida} de vida.`);
 		
 	}
 	
@@ -59,11 +125,23 @@ heroe_axe = new Heroe (
 	"Axe", "https://es.dotabuff.com/assets/heroes/axe-c50aa8d225ae00dd2a3c6016f726f7d07eecfae07cc853d13beb1168837db9dc.jpg",
 	30, 15, 5,
 	2, 0, 0,
-	3500, 40, 10,
+	2000, 40, 10,
 	[
 		AtaqueMelee,
-		GolpeBajo,
-		Patada
+		BattleHunger,
+		CullingBlade
+	]
+);
+
+heroe_sven = new Heroe (
+	"Sven", "https://es.dotabuff.com/assets/heroes/sven-c43dfb9d167908ae71baef7df9a1259a08cb168a237be916cf72bf49efa389b7.jpg",
+	35, 10, 5,
+	2, 0, 0,
+	1850, 40, 10,
+	[
+		AtaqueMelee,
+		HammerStorm,
+		GreatCleave
 	]
 );
 
@@ -74,8 +152,8 @@ heroe_clinkz = new Heroe (
 	2000, 20, 20,
 	[
 		AtaqueDistancia,
-		FlechaPerforadora,
-		FlechaExplosiva
+		SearingArrow,
+		Strafe
 	]
 );
 
@@ -86,8 +164,8 @@ heroe_lina = new Heroe (
 	1500, 5, 40,
 	[
 		AtaqueMagico,
-		BolaDeFuego,
-		BolaDeHielo
+		DragonSlave,
+		LagunaBlade
 	]
 );
 
@@ -97,6 +175,7 @@ heroe_lina = new Heroe (
 var allHeroes = [
 	
 	heroe_axe,
+	heroe_sven,
 	
 	heroe_clinkz,
 	
