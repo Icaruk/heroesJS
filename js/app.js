@@ -347,27 +347,12 @@ const fase = {
 		juego.selectHero (this.turnoSeleccion, fase[keyNSlot], heroe);
 		
 		
-		// Dibujo imagenes
-		let strHtml = "";
-		let idx = 0;
-		
-		for (let _x of []) {
-			
-			strHtml +=
-			`<div onclick="fase.clickSlot(${idx})">
-				<div class="nombreHeroe">${_x.nombre}</div>
-				<img src="${_x.img}">
-			</div>`;
-			
-			
-			idx ++;
-			
-		};
+		// Saco la id del HTML img
+		let idImg = `p${this.turnoSeleccion}_seleccion${fase[keyNSlot]}`; // genero nSlot_p1
 		
 		
-		// Pinto
-		zona1.innerHTML = strHtml;
-		
+		// Le pongo la imagen
+		uti.$(idImg).src = heroe.img;
 		
 		
 		// Aumento nSlot_pX
