@@ -16,6 +16,30 @@
 */
 
 
+/*
+	Esquema de eventos.
+	
+	Init:
+		fase.setPhase
+		fase.drawSelectionHeroes
+	
+	Selección:
+		fase.clickSlot
+		juego.selectHero
+		---> Y cuando están todos seleccionados:
+		juego.setHeroAsActive
+		hud.updateHud(0)
+		hud.updateSkills()
+		fase.setPhase
+		
+	Pulsar skill:
+		
+		
+	.
+	
+*/
+
+
 
 // Vars
 const ele_p1_b1 = uti.$("p1_b1");
@@ -104,7 +128,7 @@ const juego = {
 		let keySlotActivo = `p${idJugador}_heroeActivo`;
 		let keySlotInactivo = `p${idJugador}_heroeInactivo`;
 		
-				
+		
 		// Heroes
 		let heroeActivo = juego[keySlotActivo];
 		let heroeInactivo = juego[keySlotInactivo];	
@@ -113,6 +137,10 @@ const juego = {
 		// Intercambio
 		juego[keySlotActivo] = heroeInactivo;
 		juego[keySlotInactivo] = heroeActivo;
+		
+		
+		// Pongo la imagen del héroe inactivo
+		// p1_slot
 		
 	},
 	
@@ -135,9 +163,6 @@ const juego = {
 		let keySlotActivo = `p${idJugador}_heroeActivo`;
 		let keySlotInactivo = `p${idJugador}_heroeInactivo`;
 		
-		console.log( keySlotActivo );
-		console.log( keySlotInactivo );
-		console.log( asActive );
 		
 		// Pregunto si estoy sacando el que ya tengo activo
 		if (heroe == this[keySlotActivo]) {
@@ -241,6 +266,7 @@ const juego = {
 	},	
 	
 	
+	
 	// ------------------------
 	
 	
@@ -271,9 +297,6 @@ const juego = {
 		// Aumento stats
 		this.getMyHero().gainStats();
 		this.getHisHero().gainStats();
-		
-		console.log( this.getMyHero() );
-		console.log( this.getHisHero() );
 		
 		
 		// Actualizo los botones de la skills según el turno
@@ -403,11 +426,11 @@ const fase = {
 		if (this.nSlot_p1 >= 3 && this.nSlot_p2 >= 3) {
 			
 			// Pongo heroes activos e inactivos
-			juego.setHeroAsActive (1, 1);			// slot 1 activo
-			juego.setHeroAsActive (1, 2, false);	// slot 2 inactivo
+			juego.setHeroAsActive (1, 1, true, false);			// slot 1 activo
+			juego.setHeroAsActive (1, 2, false, false);	// slot 2 inactivo
 			
-			// juego.setHeroAsActive (2, 1, false);
-			// juego.setHeroAsActive (2, 2, false);
+			juego.setHeroAsActive (2, 1, true, false);
+			juego.setHeroAsActive (2, 2, false, false);
 			
 			
 			// Actualizo HUD
