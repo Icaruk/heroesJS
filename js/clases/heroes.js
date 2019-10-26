@@ -67,7 +67,7 @@ class Heroe {
 			this.addMana(-20);
 		*/
 		
-		this.mana = uti.minMax ( this.mana + n, 0, this.manaMax );
+		this.mana = uti.minMax ( this.mana + (Math.ceil(n)), 0, this.manaMax );
 		
 	};
 	
@@ -121,7 +121,7 @@ class Heroe {
 		
 		
 		// Log
-		console.log (`${this.nombre} --> ${objetivo.nombre} (${atk})`);
+		console.log (`${this.nombre} (${atk}) --> ${objetivo.nombre}`);
 		
 		
 		// ¿Muerte?

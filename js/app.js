@@ -1,15 +1,19 @@
 
 /*
-	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
+	------ Por hacer ------
+		
+		- Usar defensa física y mágica
+		- Que la agilidad de % de crítico
+		- Meter la vida y maná dentro de las barras, en el fondo flotando
+		
+		- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
-	- Actualizar los botones de la skills según coste de maná.
-	
-	
+	.
 */
 
 
 /*
-	Esquema de eventos.
+	------ Esquema de eventos ------
 	
 	Init:
 		fase.setPhase
@@ -101,6 +105,10 @@ const juego = {
 		uniqueHeroId ++ ;
 		
 		
+		// Le almaceno el padre
+		objHeroe.padre = idJugador;
+		
+		
 		// Log
 		console.log(`El jugador ${idJugador} ha puesto a ${objHeroe.nombre} en su slot ${idSlot}`);
 		
@@ -143,9 +151,8 @@ const juego = {
 		juego[keySlotInactivo] = heroeActivo;
 		
 		
-		// Actualizo HUD
-		hud.updateHud(idJugador);
-		hud.updateSkills();
+		// Paso turno
+		juego.nextTurn(); // aquí actualizo HUD y skills
 		
 	},
 	
@@ -336,7 +343,7 @@ const juego = {
 	
 	
 	
-	pressSkill (idSkill) {
+	pressSkill (idJugador, idSkill) {
 		/*
 			Cuando un jugador pulsa un botón de habilidad se ejecuta esto.
 			
@@ -344,6 +351,11 @@ const juego = {
 			pressSkill(1);
 			pressSkill(2);
 		*/
+		
+		// ¿Es mi turno?
+		if (idJugador != juego.turno) {
+			return;
+		};
 		
 		
 		// Obtengo mi héroe y mi enemigo
@@ -589,12 +601,23 @@ const hud = {
 			
 			uti.$(`imgHeroe${idJugador}`).src = miHeroe.img;
 			uti.$(`infoHeroe${idJugador}`).innerText = `
-				Vida: ${miHeroe.vida}
-				Mana: ${miHeroe.mana}
+				Fuerza: ${miHeroe.str}
+				Agilidad: ${miHeroe.agi}
+				Inteligencia: ${miHeroe.int}
 			`;
 			
-			uti.$(`barraVida${idJugador}`).style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
-			uti.$(`barraMana${idJugador}`).style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			let barraVida = uti.$(`barraVida${idJugador}`);
+			let barraMana = uti.$(`barraMana${idJugador}`);
+			
+			barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			
+			barraVida.innerText = "";
+			barraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
+			
+			barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			
+			barraMana.innerText =  "";
+			barraMana.innerText = `${miHeroe.mana} / ${miHeroe.manaMax}`;
 			
 		};
 		
@@ -633,9 +656,27 @@ const hud = {
 		for (let _idJugador of [1, 2]) {
 			
 			let heroeActivo = juego[`p${_idJugador}_heroeActivo`];
-				
+			let comprobarMana = _idJugador == juego.turno; // si es mi turno, compruebo mana
+			
+			
 			for (let i = 1; i <= 3; i++) {
-				uti.$(`p${_idJugador}_b${i}`).src = heroeActivo.skills[i - 1].img; // p1_b1
+				
+				let botonSkill = uti.$(`p${_idJugador}_b${i}`);
+				let skill = heroeActivo.skills [i - 1];
+				
+				
+				// Pongo la imagen
+				botonSkill.src = skill.img; // p1_b1
+				
+				
+				// Compruebo si tengo mana
+				if (comprobarMana) {
+					if (heroeActivo.mana < skill.costeMana) {
+						botonSkill.classList.add("byn"); // esto lo quitaré la próxima vez al entrar en esta función
+					};
+				};
+				
+				
 				uti.$(`tooltip_p${_idJugador}_b${i}`).title = heroeActivo.skills[i - 1].getInfo(); // tooltip_p1_b1
 			};
 			
@@ -722,8 +763,6 @@ const hud = {
 			
 		}, 750, ele);
 		
-
-		
 		
 	}
 	
@@ -734,23 +773,24 @@ const hud = {
 
 
 // EHs
-uti.$("p1_b1").addEventListener		("click", ()=> {juego.pressSkill(0)});
-uti.$("p1_b2").addEventListener		("click", ()=> {juego.pressSkill(1)});
-uti.$("p1_b3").addEventListener		("click", ()=> {juego.pressSkill(2)});
+uti.$("p1_b1").addEventListener		("click", ()=> {juego.pressSkill(1, 0)});
+uti.$("p1_b2").addEventListener		("click", ()=> {juego.pressSkill(1, 1)});
+uti.$("p1_b3").addEventListener		("click", ()=> {juego.pressSkill(1, 2)});
 uti.$("p1_slot").addEventListener	("click", ()=> {juego.swapActiveHero (1)});
 
-uti.$("p2_b1").addEventListener		("click", ()=> {juego.pressSkill(0)});
-uti.$("p2_b2").addEventListener		("click", ()=> {juego.pressSkill(1)});
-uti.$("p2_b3").addEventListener		("click", ()=> {juego.pressSkill(2)});
+uti.$("p2_b1").addEventListener		("click", ()=> {juego.pressSkill(2, 0)});
+uti.$("p2_b2").addEventListener		("click", ()=> {juego.pressSkill(2, 1)});
+uti.$("p2_b3").addEventListener		("click", ()=> {juego.pressSkill(2, 2)});
 uti.$("p2_slot").addEventListener	("click", ()=> {juego.swapActiveHero (2)});
+
+
+// Genero selección de héroes
+fase.drawSelectionHeroes();
 
 
 // Empiezo en fase 1
 fase.setPhase(1);
 
-
-// Genero selección de héroes
-fase.drawSelectionHeroes();
 
 
 // Selección de héroes
