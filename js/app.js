@@ -3,13 +3,11 @@
 	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
 	
-	- Cambiar botones de skills y slots por imagenes div.
-	- Gestionar muerte (cuando muera, desactivar el slot del muerto y hacer cambio de heroe).
-	
+	- Cambiar botones de skills por imagenes div.
+	- Poner tooltip con descripción de habilidad a cada habilidad.
 	- Actualizar los botones de la skills según coste de maná.
 	
 	- Que cada ataque normal genere maná.
-	- Que cada ronda genere maná según inteligencia.
 	
 	- Mostrar el daño daño realizado en el centro por cada héroe.
 	
@@ -33,7 +31,13 @@
 		fase.setPhase
 		
 	Pulsar skill:
-		
+		fase.pressSkill
+		miHeroe.useSkill
+			this.addMana
+			---> Si el enemigo muere
+			juego.swapActiveHero
+		hud.updateHud
+		juego.nextTurn()
 		
 	.
 	
@@ -117,12 +121,13 @@ const juego = {
 	
 	
 	
-	swapActiveHero (idJugador) {
+	swapActiveHero (idJugador, ignoraTurno = false) {
 		/*
 			Pone como activo el héroe que tengo guardado.
 			juego.swapActiveHero (1);
 			juego.swapActiveHero (2);
 		*/
+		
 		
 		// Obtengo slot
 		let keySlotActivo = `p${idJugador}_heroeActivo`;
@@ -134,13 +139,26 @@ const juego = {
 		let heroeInactivo = juego[keySlotInactivo];	
 		
 		
+		// ¿Es mi turno?
+		if (!ignoraTurno && juego.turno != idJugador) {
+			return;
+		};
+		
+		
+		// ¿Está vivo el inactivo?
+		if (heroeInactivo.vida == 0) {
+			return;
+		};
+		
+		
 		// Intercambio
 		juego[keySlotActivo] = heroeInactivo;
 		juego[keySlotInactivo] = heroeActivo;
 		
 		
-		// Pongo la imagen del héroe inactivo
-		// p1_slot
+		// Actualizo HUD
+		hud.updateHud(idJugador);
+		hud.updateSkills();
 		
 	},
 	
@@ -285,22 +303,46 @@ const juego = {
 		};
 		
 		
-		// Actualizo HUD
-		hud.updateHud(this.turno);	
-		
-		
 		// Sumo turno
 		this.turnosTotales ++;
 		console.log ("Turno de: " + this.turno);
 		
 		
+		// Obtengo heroes
+		miHeroe = this.getMyHero();
+		suHeroe = this.getHisHero();
+		
+		
 		// Aumento stats
-		this.getMyHero().gainStats();
-		this.getHisHero().gainStats();
+		miHeroe.gainStats();
+		suHeroe.gainStats();
+		
+		
+		// Doy mana al héroe que va a jugar ahora
+		miHeroe.addMana( 5 + (miHeroe.int * 0.5) );
 		
 		
 		// Actualizo los botones de la skills según el turno
 		hud.updateSkills();
+		hud.updateHud(0);
+		
+		
+		// Compruebo victoria
+		let ganador = 0;
+		
+		if (juego.p1_slot1.vida == 0 && juego.p1_slot2.vida == 0) {
+			ganador = 1;
+		} else if (juego.p2_slot1.vida == 0 && juego.p2_slot2.vida == 0) {
+			ganador = 2;
+		};
+		
+		
+		// Si hay ganador
+		if (ganador != 0) {
+			juego.ganador = ganador;
+			fase.setPhase(3);
+			fase.drawEndOfCombat();
+		};
 		
 		
 	},	
@@ -339,6 +381,7 @@ const juego = {
 		
 		
 	}
+	
 	
 	
 	
@@ -481,6 +524,18 @@ const fase = {
 	},
 	
 	
+	
+	drawEndOfCombat() {
+		/*
+			fase.drawEndOfCombat();
+		*/
+		
+		uti.$("infoPostCombate").innerText = `Ganador: jugador ${juego.ganador}`;
+		
+	}
+	
+	
+	
 };
 
 
@@ -582,6 +637,21 @@ const hud = {
 		for (let _x of (arrBotones[juego.getEnemyId() - 1]) ) {
 			hud.enableButton(false, uti.$(_x));
 		};
+		
+		
+		// Pongo la imagen de los héroes inactivos
+		uti.$("p1_slot").src = juego.p1_heroeInactivo.img;
+		uti.$("p2_slot").src = juego.p2_heroeInactivo.img;
+		
+		
+		// Compruebo si están muertos
+		if (juego.p1_heroeInactivo.vida == 0) {
+			uti.$("p1_slot").classList.add("blur-byn");
+		};
+		if (juego.p2_heroeInactivo.vida == 0) {
+			uti.$("p2_slot").classList.add("blur-byn");
+		};
+		
 		
 	},
 	

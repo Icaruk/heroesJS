@@ -108,10 +108,25 @@ class Heroe {
 		let atk = skill.getAtk(this);
 		
 		
-		// Quito vida
-		objetivo.vida -= atk;
+		// Calculo la vida final
+		let vidaFinal = Math.max (objetivo.vida - atk, 0);
 		
-		console.log (`${this.nombre} causa ${atk} de daño a ${objetivo.nombre}. Sobrevivió con ${objetivo.vida} de vida.`);
+		
+		// Quito vida
+		objetivo.vida = vidaFinal;
+		console.warn( vidaFinal );
+		
+		
+		// Log
+		console.log (`${this.nombre} --> ${objetivo.nombre} (${atk})`);
+		
+		
+		// ¿Muerte?
+		if (vidaFinal <= 0) {
+			console.warn ( `Héroe muerto: ${objetivo.nombre}` );
+			juego.swapActiveHero (juego.getEnemyId(), true);
+		};
+		
 		
 	}
 	
@@ -159,7 +174,7 @@ heroe_clinkz = new Heroe (
 
 heroe_lina = new Heroe (
 	"Lina", "https://es.dotabuff.com/assets/heroes/lina-8c8d6b1957d3652b7d1dd544497dfce81900a8d707d3ef016bc664cd63d4ffc7.jpg",
-	5, 30, 15,
+	5, 10, 35,
 	0, 3, 1,
 	1500, 5, 40,
 	[
