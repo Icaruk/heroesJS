@@ -114,7 +114,10 @@ class Heroe {
 		
 		// Quito vida
 		objetivo.vida = vidaFinal;
-		console.warn( vidaFinal );
+		
+		
+		// Muestro
+		hud.showDamageDone(atk);
 		
 		
 		// Log

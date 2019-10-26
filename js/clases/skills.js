@@ -20,7 +20,14 @@ class Skill {
 	
 	
 	getInfo() {
-		return `ATK: ${this.atk} + (${this.stat} * ${this.multi})`;
+		
+		return `
+${this.nombre}
+(Coste de mana: ${this.costeMana})
+
+ATK: ${this.atk} + (${this.stat} * ${this.multi})
+		`;
+		
 	};
 	
 	

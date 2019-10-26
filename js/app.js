@@ -2,14 +2,8 @@
 /*
 	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
-	
-	- Cambiar botones de skills por imagenes div.
-	- Poner tooltip con descripción de habilidad a cada habilidad.
 	- Actualizar los botones de la skills según coste de maná.
 	
-	- Que cada ataque normal genere maná.
-	
-	- Mostrar el daño daño realizado en el centro por cada héroe.
 	
 */
 
@@ -34,6 +28,7 @@
 		fase.pressSkill
 		miHeroe.useSkill
 			this.addMana
+			hud.showDamageDone
 			---> Si el enemigo muere
 			juego.swapActiveHero
 		hud.updateHud
@@ -46,14 +41,6 @@
 
 
 // Vars
-const ele_p1_b1 = uti.$("p1_b1");
-const ele_p1_b2 = uti.$("p1_b2");
-const ele_p1_b3 = uti.$("p1_b3");
-const ele_p1_slot = uti.$("p1_slot");
-const ele_p2_b1 = uti.$("p2_b1");
-const ele_p2_b2 = uti.$("p2_b2");
-const ele_p2_b3 = uti.$("p2_b3");
-const ele_p2_slot = uti.$("p2_slot");
 
 
 
@@ -331,9 +318,9 @@ const juego = {
 		let ganador = 0;
 		
 		if (juego.p1_slot1.vida == 0 && juego.p1_slot2.vida == 0) {
-			ganador = 1;
-		} else if (juego.p2_slot1.vida == 0 && juego.p2_slot2.vida == 0) {
 			ganador = 2;
+		} else if (juego.p2_slot1.vida == 0 && juego.p2_slot2.vida == 0) {
+			ganador = 1;
 		};
 		
 		
@@ -513,6 +500,7 @@ const fase = {
 			</div>`;
 			
 			
+			
 			idx ++;
 			
 		};
@@ -622,20 +610,35 @@ const hud = {
 		
 		// Listo los botones 
 		let arrBotones = [
-			["p1_b1", "p1_b2", "p1_b3", "p1_slot"],
-			["p2_b1", "p2_b2", "p2_b3", "p2_slot"]
+			["imgHeroe1", "p1_b1", "p1_b2", "p1_b3", "p1_slot"],
+			["imgHeroe2", "p2_b1", "p2_b2", "p2_b3", "p2_slot"]
 		];
 		
 		
 		// Activo mis botones botones, porque es mi turno
 		for (let _x of (arrBotones[juego.turno - 1]) ) {
-			hud.enableButton(true, uti.$(_x));
+			// hud.enableButton(true, uti.$(_x));
+			uti.$(_x).classList.remove("byn");
 		};
 		
 		
 		// Deshabilito los botones del otro
 		for (let _x of (arrBotones[juego.getEnemyId() - 1]) ) {
-			hud.enableButton(false, uti.$(_x));
+			// hud.enableButton(false, uti.$(_x));
+			uti.$(_x).classList.add("byn");
+		};
+		
+		
+		// Pongo la imagen y el tooltip de cada skill
+		for (let _idJugador of [1, 2]) {
+			
+			let heroeActivo = juego[`p${_idJugador}_heroeActivo`];
+				
+			for (let i = 1; i <= 3; i++) {
+				uti.$(`p${_idJugador}_b${i}`).src = heroeActivo.skills[i - 1].img; // p1_b1
+				uti.$(`tooltip_p${_idJugador}_b${i}`).title = heroeActivo.skills[i - 1].getInfo(); // tooltip_p1_b1
+			};
+			
 		};
 		
 		
@@ -656,21 +659,90 @@ const hud = {
 	},
 	
 	
-}
+	
+	showDamageDone(dmg) {
+		/*
+			Muestra el daño causado en el centro de la pantalla.
+			
+			hud.showDamageDone(450);
+		*/
+		
+		let ele = uti.$("combate_textoColumnaCentro");
+		
+		
+		// Muestro texto
+		ele.innerText = dmg;
+		ele.style.opacity = 1;
+		
+		
+		
+		setTimeout(() => {
+		
+			// Selecciono animación
+			let empuje = 110;
+			
+			anims = {
+				"1": [
+					{transform: `translateX(0px)`},
+					{transform: `translateX(-${empuje}px)`}
+				],
+				
+				"2": [
+					{transform: `translateX(0px)`},
+					{transform: `translateX(${empuje}px)`}
+				]
+			};
+			
+			
+			// Animo de mi lado hasta el suyo
+			ele.animate(anims[juego.turno], { // animo
+				duration: 350,
+				iterations: 1,
+				easing: "ease-in-out",
+				// fill: "forwards" // no mantengo
+			});
+			
+			
+			// Espero para desvanecer
+			setTimeout(() => {
+				
+				ele.animate([
+					{opacity: 1},
+					{opacity: 0}
+				], {
+					duration: 350,
+					iterations: 1,
+					easing: "ease-in-out",
+				});
+				
+				
+				ele.style.opacity = 0;
+				
+			}, 0, ele);
+			
+		}, 750, ele);
+		
 
+		
+		
+	}
+	
+	
+	
+};
 
 
 
 // EHs
-ele_p1_b1.addEventListener		("click", ()=> {juego.pressSkill(0)});
-ele_p1_b2.addEventListener		("click", ()=> {juego.pressSkill(1)});
-ele_p1_b3.addEventListener		("click", ()=> {juego.pressSkill(2)});
-ele_p1_slot.addEventListener	("click", ()=> {juego.swapActiveHero (1)});
+uti.$("p1_b1").addEventListener		("click", ()=> {juego.pressSkill(0)});
+uti.$("p1_b2").addEventListener		("click", ()=> {juego.pressSkill(1)});
+uti.$("p1_b3").addEventListener		("click", ()=> {juego.pressSkill(2)});
+uti.$("p1_slot").addEventListener	("click", ()=> {juego.swapActiveHero (1)});
 
-ele_p2_b1.addEventListener		("click", ()=> {juego.pressSkill(0)});
-ele_p2_b2.addEventListener		("click", ()=> {juego.pressSkill(1)});
-ele_p2_b3.addEventListener		("click", ()=> {juego.pressSkill(2)});
-ele_p2_slot.addEventListener	("click", ()=> {juego.swapActiveHero (2)});
+uti.$("p2_b1").addEventListener		("click", ()=> {juego.pressSkill(0)});
+uti.$("p2_b2").addEventListener		("click", ()=> {juego.pressSkill(1)});
+uti.$("p2_b3").addEventListener		("click", ()=> {juego.pressSkill(2)});
+uti.$("p2_slot").addEventListener	("click", ()=> {juego.swapActiveHero (2)});
 
 
 // Empiezo en fase 1

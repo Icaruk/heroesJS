@@ -106,6 +106,30 @@ const uti = {
 		
 	},
 	
+	fadeOut(idEle) {
+		/*
+			Desvanece un elemento HTML.
+			
+			uti.fadeOut("idElemento");
+		*/
+		
+		let ele = this.$(idEle);
+		
+		
+		let loop = setInterval(() => {
+			if (!ele.style.opacity) {
+				ele.style.opacity = 1;
+			}
+			if (ele.style.opacity > 0) {
+				ele.style.opacity -= 0.1;
+			} else {
+				clearInterval(loop);
+			}
+			
+		}, 100);
+	},
+
+	
 	
 	async delayed (ms, fnc) {
 		return new Promise (resolve => {

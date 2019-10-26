@@ -2,6 +2,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	outline-style: none;
 }
 
 body {
@@ -74,6 +75,22 @@ h1, h2, h3, h4, p {
 	width: 50%;
 	position: relative;
 }
+.col40 {
+	width: 40%;
+	position: relative;
+}
+.col33 {
+	width: 33.33%;
+	position: relative;
+}
+.col20 {
+	width: 20%;
+	position: relative;
+}
+.col10 {
+	width: 10%;
+	position: relative;
+}
 
 
 .mb-1 {
@@ -137,9 +154,25 @@ h1, h2, h3, h4, p {
 	background-color: rgb(58, 160, 255);
 }
 
+
+
 /*
 .cajaInfoHeroe {
 	
 	width: 50%;
 	
 }*/
+
+
+
+.combate_columnaCentro {
+	width: 15%;
+	align-self: flex-start;
+	margin-top: 5%;
+}
+
+.combate_textoColumnaCentro {
+	color: rgb(255, 32, 32);
+	
+}
+
