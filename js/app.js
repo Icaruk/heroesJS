@@ -2,10 +2,6 @@
 /*
 	------ Por hacer ------
 		
-		- Usar defensa física y mágica
-		- Que la agilidad de % de crítico
-		- Meter la vida y maná dentro de las barras, en el fondo flotando
-		
 		- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
 	.
@@ -600,24 +596,35 @@ const hud = {
 			uti.$(`p${idJugador}_b3`).innerText = miHeroe.skills[2].nombre;
 			
 			uti.$(`imgHeroe${idJugador}`).src = miHeroe.img;
-			uti.$(`infoHeroe${idJugador}`).innerText = `
-				Fuerza: ${miHeroe.str}
-				Agilidad: ${miHeroe.agi}
-				Inteligencia: ${miHeroe.int}
+			
+			
+			let gananciaStr = "";
+			if (miHeroe.gananciaStr > 0) {gananciaStr = `(+${miHeroe.gananciaStr})`}
+			let gananciaAgi = "";
+			if (miHeroe.gananciaAgi > 0) {gananciaAgi = `(+${miHeroe.gananciaAgi})`}
+			let gananciaInt = "";
+			if (miHeroe.gananciaInt > 0) {gananciaInt = `(+${miHeroe.gananciaInt})`}
+			
+			uti.$(`infoHeroe${idJugador}`).innerHTML = `
+				<img class="imgAtributos" src="https://i.gyazo.com/4664196f8b0b9f28b0a0aa2af6ac2e44.png"> ${miHeroe.str} ${gananciaStr}
+				<img class="imgAtributos" src="https://i.gyazo.com/7a764ac142df7b24027f2a33603554a7.png"> ${miHeroe.agi} ${gananciaAgi}
+				<img class="imgAtributos" src="https://i.gyazo.com/85f8c03626cb33cc579b30822bcd8a25.png"> ${miHeroe.int} ${gananciaInt}
 			`;
+			
 			
 			let barraVida = uti.$(`barraVida${idJugador}`);
 			let barraMana = uti.$(`barraMana${idJugador}`);
+			let txtBarraVida = uti.$(`p${idJugador}_textoBarraVida`);
+			let txtBarraMana = uti.$(`p${idJugador}_textoBarraMana`);
 			
-			barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			// barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			txtBarraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
 			
-			barraVida.innerText = "";
-			barraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
+			// barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			txtBarraMana.innerText = `${miHeroe.mana} / ${miHeroe.manaMax}`;
 			
-			barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
-			
-			barraMana.innerText =  "";
-			barraMana.innerText = `${miHeroe.mana} / ${miHeroe.manaMax}`;
+			hud.animBar (barraVida, 50);
+			hud.animBar (barraMana, 50);
 			
 		};
 		
@@ -701,14 +708,21 @@ const hud = {
 	
 	
 	
-	showDamageDone(dmg) {
+	showDamageDone(dmg, color) {
 		/*
 			Muestra el daño causado en el centro de la pantalla.
 			
 			hud.showDamageDone(450);
+			hud.showDamageDone(450, "red");
+			hud.showDamageDone(450, "orange");
 		*/
 		
 		let ele = uti.$("combate_textoColumnaCentro");
+		
+		
+		// Aplico color
+		if (!color) {color = "red"};
+		ele.style.color = color;
 		
 		
 		// Muestro texto
@@ -763,7 +777,27 @@ const hud = {
 			
 		}, 750, ele);
 		
+	},
+	
+	
+	
+	animBar (ele, porcentajeWidthFuturo) {
+		/*
+			Anima una barra.
+			
+			hud.animBar (elementoHTML, 0.5);
+		*/
 		
+		let widthActual = ele.style.width;
+		let pendiente = porcentajeWidthFuturo - widthActual;
+		
+		let loop = setInterval(() => {
+			
+			ele.style.width = `${pendiente}%`
+			
+		}, 0, ele);
+		
+			
 	}
 	
 	

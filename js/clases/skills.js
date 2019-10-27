@@ -26,6 +26,7 @@ ${this.nombre}
 (Coste de mana: ${this.costeMana})
 
 ATK: ${this.atk} + (${this.stat} * ${this.multi})
+Tipo: ${this.tipo}
 		`;
 		
 	};

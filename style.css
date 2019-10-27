@@ -46,6 +46,15 @@ h1, h2, h3, h4, p {
 	border-radius: 40%;
 }
 
+.columna {
+	flex-direction: column;
+	align-items: center;
+}
+.fila {
+	flex-direction: row;
+	align-items: center;
+}
+
 
 
 /*
@@ -61,14 +70,11 @@ h1, h2, h3, h4, p {
 
 
 
-.nombreHeroe {
-	
+.nombreHeroe {	
 	position: absolute;
 	color: white;
 	margin-left: 3px;
-	
 }
-
 
 
 .col50 {
@@ -122,6 +128,10 @@ h1, h2, h3, h4, p {
 	font-size: 22px;
 }
 
+.imgSkill {
+	width: 10vh;
+}
+
 .blur {
 	filter: blur(4px);
 	-webkit-filter: blur(4px);
@@ -140,17 +150,25 @@ h1, h2, h3, h4, p {
 .fondoBarra {
 	width: 40%;
 	background-color: grey;
+	justify-content: flex-start;
+}
+
+.txtBarra {
+	position: absolute;
+	color: white;
+	margin-left: 6px;
+	font-size: 18px;
 }
 
 .barraVida {
 	width: 100%;
-	height: 20px;
+	height: 25px;
 	background-color: rgb(255, 52, 52);
 }
 
 .barraMana {
 	width: 100%;
-	height: 20px;
+	height: 25px;
 	background-color: rgb(58, 160, 255);
 }
 
@@ -176,3 +194,6 @@ h1, h2, h3, h4, p {
 	
 }
 
+.imgAtributos {
+	width: 4vh;
+}

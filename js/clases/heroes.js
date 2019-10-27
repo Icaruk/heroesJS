@@ -108,6 +108,24 @@ class Heroe {
 		let atk = skill.getAtk(this);
 		
 		
+		// Color del daño mostrado
+		let color = "red";
+		
+		
+		// Aplico crítico
+		if (skill.tipo == "FIS") {
+			
+			let agi = this.agi;
+			let porcentaje = uti.minMax( (agi * 0.5), 0, 100);
+			
+			if (uti.random(0, 100) <= porcentaje) {
+				atk = atk * 1.5;
+				color = "orange";
+			};
+			
+		};
+		
+		
 		// Aplico reducciones según defensa
 		let reduccion = 0;
 		
@@ -129,7 +147,7 @@ class Heroe {
 		
 		
 		// Muestro
-		hud.showDamageDone(atk);
+		hud.showDamageDone(atk, color);
 		
 		
 		// Log
