@@ -617,14 +617,14 @@ const hud = {
 			let txtBarraVida = uti.$(`p${idJugador}_textoBarraVida`);
 			let txtBarraMana = uti.$(`p${idJugador}_textoBarraMana`);
 			
-			// barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
 			txtBarraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
 			
-			// barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
 			txtBarraMana.innerText = `${miHeroe.mana} / ${miHeroe.manaMax}`;
 			
-			hud.animBar (barraVida, 50);
-			hud.animBar (barraMana, 50);
+			// hud.animBar (barraVida, 50);
+			// hud.animBar (barraMana, 50);
 			
 		};
 		
@@ -785,17 +785,31 @@ const hud = {
 		/*
 			Anima una barra.
 			
-			hud.animBar (elementoHTML, 0.5);
+			hud.animBar (elementoHTML, 50);
 		*/
 		
-		let widthActual = ele.style.width;
-		let pendiente = porcentajeWidthFuturo - widthActual;
+		console.log( ele );
 		
+		let widthActual = ele.style.width;
+		console.log( "Actual: " + widthActual );
+		
+		// ele.style.width = `${90}%`;
+		
+		
+		/*
 		let loop = setInterval(() => {
 			
-			ele.style.width = `${pendiente}%`
+			let w = ele.style.width - 1;
+			console.log( w );
+			
+			if (w >= porcentajeWidthFuturo) {
+				clearInterval(loop);	
+			};
+			
+			ele.style.width = `${w}%`;
 			
 		}, 0, ele);
+		*/
 		
 			
 	}
