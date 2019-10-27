@@ -117,7 +117,20 @@ SearingArrow = new Skill (
 Strafe = new Skill (
 	"Strafe", "https://es.dotabuff.com/assets/skills/clinkz-strafe-5259-87880a3e8e6cf98c4c7c09c0150b953099a8f154641c3dd8d9e0927791763580.jpg",
 	800, "AGI", 0.2,
-	"MAG", 60
+	"FIS", 60
+);
+
+
+// PA
+StiflingDagger = new Skill (
+	"Strafe", "https://www.dotabuff.com/assets/skills/phantom-assassin-stifling-dagger-5190-fc70aeba17709e9c1484904c1d13fc8e2d3f165870d3b2066bcf990dc7be3db9.jpg",
+	250, "AGI", 0.4,
+	"FIS", 20
+);
+CoupDeGrace = new Skill (
+	"Strafe", "https://www.dotabuff.com/assets/skills/phantom-assassin-coup-de-grace-5193-817879faa6fa4749187a3f0e3f7b9411ca12fea020a74914f95e7a6bc9b660ea.jpg",
+	500, "AGI", 5,
+	"FIS", 100
 );
 
 
@@ -144,3 +157,14 @@ LagunaBlade = new Skill (
 );
 
 
+// AA
+ColdFeet = new Skill (
+	"Cold feet", "https://www.dotabuff.com/assets/skills/ancient-apparition-cold-feet-5345-694a72f5349d08b8d7c0e6f172e7a7984f86da602b4efb811ef8bb9923beff6f.jpg",
+	200, "INT", 0.4,
+	"MAG", 20
+);
+IceBlast = new Skill (
+	"Ice blast", "https://www.dotabuff.com/assets/skills/ancient-apparition-ice-blast-5348-befbc26f7b048f5ab76abf09f677eaa4c15146dfc81e76ca362ea86fcb993758.jpg",
+	300, "INT", 10,
+	"MAG", 100
+);
