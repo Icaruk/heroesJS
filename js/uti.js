@@ -1,3 +1,4 @@
+
 /*
 const console.log = console.log.bind();
 const console.warning = console.warn.bind();
@@ -20,7 +21,7 @@ const uti = {
 		/*
 			Limita un número por arriba y por abajo.
 			
-			uri.minMax (15, 0, 10); // devuelve 10
+			uti.minMax (15, 0, 10); // devuelve 10
 		*/
 		
 		return Math.max (Math.min (n, max), min);

@@ -92,8 +92,8 @@ class Heroe {
 			Usa la skill 0, 1 o 2
 			
 			this.useSkill (0, objHeroeEnemigo)
-			this.useSkill (0, objHeroeEnemigo)
-			this.useSkill (0, objHeroeEnemigo)
+			this.useSkill (1, objHeroeEnemigo)
+			this.useSkill (2, objHeroeEnemigo)
 		*/
 		
 		// Selecciono la skill

@@ -112,8 +112,8 @@ AtaqueDistancia = new Skill (
 // Clinkz
 SearingArrow = new Skill (
 	"Searing arrow", "https://es.dotabuff.com/assets/skills/clinkz-searing-arrows-5260-553770eded3a26c9351b996159f61426124774694568a7cc285bcd7ebbee005d.jpg",
-	300, "INT", 4,
-	"FIS", 15
+	200, "INT", 2,
+	"FIS", 45
 );
 Strafe = new Skill (
 	"Strafe", "https://es.dotabuff.com/assets/skills/clinkz-strafe-5259-87880a3e8e6cf98c4c7c09c0150b953099a8f154641c3dd8d9e0927791763580.jpg",

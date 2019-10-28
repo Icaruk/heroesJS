@@ -12,7 +12,7 @@
 	------ Esquema de eventos ------
 	
 	Init:
-		fase.setPhase
+		fase.setPhase(1)
 		fase.drawSelectionHeroes
 	
 	Selección:
@@ -22,7 +22,7 @@
 		juego.setHeroAsActive
 		hud.updateHud(0)
 		hud.updateSkills()
-		fase.setPhase
+		fase.setPhase(2)
 		
 	Pulsar skill:
 		fase.pressSkill
@@ -33,7 +33,10 @@
 			juego.swapActiveHero
 		hud.updateHud
 		juego.nextTurn()
-		
+			---> Si hay 2 muertos del mismo equipo
+			fase.setPhase(3);
+			fase.drawEndOfCombat();
+		.
 	.
 	
 */
