@@ -785,18 +785,23 @@ const hud = {
 		/*
 			Anima una barra.
 			
-			hud.animBar (elementoHTML, 50);
+			hud.animBar ("barraVida", 50);
 		*/
 		
-		console.log( ele );
+		console.log(ele);
+		let widthActual = parseInt(ele.style.width);
 		
-		let widthActual = ele.style.width;
-		console.log( "Actual: " + widthActual );
+		let pendiente = porcentajeWidthFuturo - widthActual;
 		
-		// ele.style.width = `${90}%`;
+		let movimiento = 1;
+		if (pendiente < 0) {movimiento = -1};
+		
+		
+		// ele.style.width = `${}%`;
 		
 		
 		/*
+		
 		let loop = setInterval(() => {
 			
 			let w = ele.style.width - 1;
@@ -809,8 +814,8 @@ const hud = {
 			ele.style.width = `${w}%`;
 			
 		}, 0, ele);
-		*/
 		
+		*/
 			
 	}
 	
