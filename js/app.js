@@ -1,8 +1,7 @@
 
 /*
 	------ Por hacer ------
-		
-	- Animar barritas de vida y mana.
+	
 	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
 */
@@ -620,14 +619,15 @@ const hud = {
 			let txtBarraVida = uti.$(`p${idJugador}_textoBarraVida`);
 			let txtBarraMana = uti.$(`p${idJugador}_textoBarraMana`);
 			
-			barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
-			txtBarraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
 			
-			barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			txtBarraVida.innerText = `${miHeroe.vida} / ${miHeroe.vidaMax}`;
 			txtBarraMana.innerText = `${miHeroe.mana} / ${miHeroe.manaMax}`;
 			
-			// hud.animBar (barraVida, 50);
-			// hud.animBar (barraMana, 50);
+			// barraVida.style.width = `${miHeroe.vida * 100 / miHeroe.vidaMax}%`;
+			barraMana.style.width = `${miHeroe.mana * 100 / miHeroe.manaMax}%`;
+			
+			hud.animBar (barraVida, miHeroe.vida * 100 / miHeroe.vidaMax);
+			// hud.animBar (barraMana, miHeroe.mana * 100 / miHeroe.manaMax, 0);
 			
 		};
 		
@@ -784,41 +784,44 @@ const hud = {
 	
 	
 	
-	animBar (ele, porcentajeWidthFuturo) {
+	animBar (ele, porcentajeWidthFuturo, intervalo = 20) {
 		/*
-			Anima una barra.
+			Anima una barra animando su width desde el actual hasta cierto %.
 			
-			hud.animBar ("barraVida", 50);
+			hud.animBar ("barraVida", 50, 20); // Mueve la barra hasta el 50% con un intervalo de 20ms
+			hud.animBar ("barraVida", 20, 50); // Mueve la barra hasta el 20% con un intervalo de 50ms
 		*/
 		
-		console.log(ele);
-		let widthActual = parseInt(ele.style.width);
+		if (! ele.style.width) {
+			ele.style.width = "100%";
+		};
 		
+		porcentajeWidthFuturo = Math.round (porcentajeWidthFuturo);
+		if (porcentajeWidthFuturo <= 0) {
+			return;
+		};
+		
+		
+		
+		let widthActual = parseInt(ele.style.width);
 		let pendiente = porcentajeWidthFuturo - widthActual;
 		
-		let movimiento = 1;
-		if (pendiente < 0) {movimiento = -1};
 		
+		let movimiento = pendiente < 0 ? -1 : 1;
 		
-		// ele.style.width = `${}%`;
-		
-		
-		/*
 		
 		let loop = setInterval(() => {
 			
-			let w = ele.style.width - 1;
-			console.log( w );
+			let w = Math.round(parseInt(ele.style.width));
 			
-			if (w >= porcentajeWidthFuturo) {
-				clearInterval(loop);	
+			
+			if (w == porcentajeWidthFuturo) {
+				clearInterval(loop);
+			} else {
+				ele.style.width = `${w + movimiento}%`;
 			};
 			
-			ele.style.width = `${w}%`;
-			
-		}, 0, ele);
-		
-		*/
+		}, intervalo, ele, porcentajeWidthFuturo);
 			
 	}
 	
