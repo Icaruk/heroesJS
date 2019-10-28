@@ -16,10 +16,6 @@ const uti = {
 		return document.getElementById(idElemento);
 	},
 	
-	
-	
-	
-	
 	minMax (n, min, max) {
 		/*
 			Limita un número por arriba y por abajo.
@@ -130,13 +126,14 @@ const uti = {
 	},
 
 	
-	
+	/*
 	async delayed (ms, fnc) {
 		return new Promise (resolve => {
 			setTimeout(fnc, ms);
 			resolve("");
 		});
 	}
+	*/
 	
 };
 

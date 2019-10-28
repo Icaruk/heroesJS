@@ -2,9 +2,9 @@
 /*
 	------ Por hacer ------
 		
-		- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
+	- Animar barritas de vida y mana.
+	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
-	.
 */
 
 
