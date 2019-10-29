@@ -50,6 +50,7 @@ Hay 3 tipos de héroes: de **fuerza**, de **agilidad** y de **inteligencia**.
 - **Vida**: bajará al recibir daño. Si la vida de un héroe llega a 0, morirá.
 - **Maná**: necesario para lanzar habilidades.
 - **Agilidad**: el 50% de la agilidad del héroe se convertira en % de realizar un golpe crítico que causará un 150% más de daño.
+- **Inteligencia**: el 50% de la inteligencia del héroe + 5 se convertirá en maná para sí mismo después del turno del rival.
 - **Defensa física**: reducirá el daño físico recibido.
 - **Defensa mágica**: reducirá el daño mágico recibido.
 - **Crecimiento de atributos**: el héroe activo aumentará su fuerza, agilidad o inteligencia a cada turno que pase.
