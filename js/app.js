@@ -4,6 +4,11 @@
 	
 	- NO PRIORIDAD: Copiar el héroe al seleccionarlo para que no esté por referencia.
 	
+	- Turno
+	- miPersonaje + suPersonaje
+	- 
+	
+	
 */
 
 
@@ -443,7 +448,7 @@ const fase = {
 		
 		
 		// Saco la id del HTML img
-		let idImg = `p${this.turnoSeleccion}_seleccion${fase[keyNSlot]}`; // genero nSlot_p1
+		let idImg = `p${this.turnoSeleccion}_seleccion${fase[keyNSlot]}`; // genero p1_seleccion1
 		
 		
 		// Le pongo la imagen

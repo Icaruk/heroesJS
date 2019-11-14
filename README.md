@@ -70,3 +70,10 @@ Cada habilidad tiene una **fórmula para calcular el daño** y un coste de maná
 Se puede cambiar de héroe en cualquier momento de la batalla, a no ser que esté muerto. Esta acción te hará perder el turno.
 
 Si un héroe muere se cambiará automáticamente al otro héroe vivo y se perderá el turno.
+
+
+
+# Preview
+![](https://i.gyazo.com/204e918d235bf6607a3d356972c68b8f.png)
+
+![](https://i.gyazo.com/eaf0644baff102efb8af7c7ae8854c3d.png)
