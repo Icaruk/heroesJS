@@ -67,7 +67,7 @@ Tipo: ${this.tipo}
 
 // Físico
 AtaqueMelee = new Skill (
-	"Ataque melee", "https://es.dotabuff.com/assets/skills/beastmaster-wild-axes-5168-5a9cc8387edc6a15ab415273b4e69d997d2da23e16b5e847927fe04d18e64faa.jpg",
+	"Ataque melee", "/img/skills/wild_axes.jpg",
 	200, "STR", 0.2,
 	"FIS", 0
 );
@@ -75,12 +75,12 @@ AtaqueMelee = new Skill (
 
 // Axe
 BattleHunger = new Skill (
-	"Battle hunger", "https://es.dotabuff.com/assets/skills/axe-battle-hunger-5008-ee628cf379462a374e03fa8fea04b065e97aaf0fe241629a266a102041106267.jpg",
+	"Battle hunger", "/img/skills/battle_hunger.jpg",
 	400, "STR", 2,
 	"FIS", 20
 );
 CullingBlade = new Skill (
-	"Culling blade", "https://es.dotabuff.com/assets/skills/axe-culling-blade-5010-7334574abc38980c3f2df4040f384572361c4fd4d8c136c766a4c76c49624aee.jpg",
+	"Culling blade", "/img/skills/culling_blade.jpg",
 	0, "STR", 8,
 	"FIS", 40
 );
@@ -88,12 +88,12 @@ CullingBlade = new Skill (
 
 // Sven
 HammerStorm = new Skill (
-	"Hammer storm", "https://es.dotabuff.com/assets/skills/sven-storm-hammer-5094-e024ade99b99c4c0905b2e67bb681c6d4178833577dc0c0a8b811a61d93eaa9d.jpg",
+	"Hammer storm", "/img/skills/hammer_storm.jpg",
 	300, "STR", 2.5,
 	"FIS", 20
 );
 GreatCleave = new Skill (
-	"Great cleave", "https://es.dotabuff.com/assets/skills/sven-great-cleave-5095-e67fee0f76f0a1788a8a067efaf5320b9b1383a527641e81decac7c3bacdd924.jpg",
+	"Great cleave", "/img/skills/great_cleave.jpg",
 	600, "STR", 0.25,
 	"FIS", 40
 );
@@ -102,7 +102,7 @@ GreatCleave = new Skill (
 
 // Distancia
 AtaqueDistancia = new Skill (
-	"Ataque distancia", "https://es.dotabuff.com/assets/skills/windranger-powershot-5131-188a968270a649dc0640ec3dbae97a5940403e05784bd04a2753dca5cf5a79a0.jpg",
+	"Ataque distancia", "/img/skills/marksmanship.jpg",
 	200, "AGI", 0.2,
 	"FIS", 0
 );
@@ -111,12 +111,12 @@ AtaqueDistancia = new Skill (
 
 // Clinkz
 SearingArrow = new Skill (
-	"Searing arrow", "https://es.dotabuff.com/assets/skills/clinkz-searing-arrows-5260-553770eded3a26c9351b996159f61426124774694568a7cc285bcd7ebbee005d.jpg",
+	"Searing arrow", "/img/skills/searing_arrows.jpg",
 	200, "INT", 2,
 	"FIS", 45
 );
 Strafe = new Skill (
-	"Strafe", "https://es.dotabuff.com/assets/skills/clinkz-strafe-5259-87880a3e8e6cf98c4c7c09c0150b953099a8f154641c3dd8d9e0927791763580.jpg",
+	"Strafe", "/img/skills/death_pact.jpg",
 	800, "AGI", 0.2,
 	"FIS", 60
 );
@@ -124,12 +124,12 @@ Strafe = new Skill (
 
 // PA
 StiflingDagger = new Skill (
-	"Strafe", "https://www.dotabuff.com/assets/skills/phantom-assassin-stifling-dagger-5190-fc70aeba17709e9c1484904c1d13fc8e2d3f165870d3b2066bcf990dc7be3db9.jpg",
+	"Strafe", "/img/skills/stifling_dagger.jpg",
 	250, "AGI", 0.4,
 	"FIS", 20
 );
 CoupDeGrace = new Skill (
-	"Strafe", "https://www.dotabuff.com/assets/skills/phantom-assassin-coup-de-grace-5193-817879faa6fa4749187a3f0e3f7b9411ca12fea020a74914f95e7a6bc9b660ea.jpg",
+	"Strafe", "/img/skills/coup_de_grace.jpg",
 	500, "AGI", 5,
 	"FIS", 100
 );
@@ -138,7 +138,7 @@ CoupDeGrace = new Skill (
 
 // Magico
 AtaqueMagico = new Skill (
-	"Ataque magico", "https://es.dotabuff.com/assets/skills/skywrath-mage-arcane-bolt-5581-19d06da3ef80f0c8e9e34e47bc65df5d36fe0ba037a6014a771c962b00090c2d.jpg",
+	"Ataque magico", "/img/skills/arcane_bolt.jpg",
 	300, "INT", 0.3,
 	"MAG", 0
 );
@@ -147,12 +147,12 @@ AtaqueMagico = new Skill (
 
 // Lina
 DragonSlave = new Skill (
-	"Dragon slave", "https://es.dotabuff.com/assets/skills/lina-dragon-slave-5040-1e6ee5a0618920bcad4acfd3427867f5e3a20b48e974d4f85752b4f11642c1e4.jpg",
+	"Dragon slave", "/img/skills/dragon_slave.jpg",
 	500, "INT", 0.6,
 	"MAG", 25
 );
 LagunaBlade = new Skill (
-	"Laguna blade", "https://es.dotabuff.com/assets/skills/lina-laguna-blade-5043-34ba02a00fcf721c14478a9adc4017cfbc3eddbb260b1b06ef16725d2444be70.jpg",
+	"Laguna blade", "/img/skills/laguna_blade.jpg",
 	0, "INT", 20,
 	"MAG", 100
 );
@@ -160,12 +160,12 @@ LagunaBlade = new Skill (
 
 // AA
 ColdFeet = new Skill (
-	"Cold feet", "https://www.dotabuff.com/assets/skills/ancient-apparition-cold-feet-5345-694a72f5349d08b8d7c0e6f172e7a7984f86da602b4efb811ef8bb9923beff6f.jpg",
+	"Cold feet", "/img/skills/cold_feet.jpg",
 	200, "INT", 0.4,
 	"MAG", 20
 );
 IceBlast = new Skill (
-	"Ice blast", "https://www.dotabuff.com/assets/skills/ancient-apparition-ice-blast-5348-befbc26f7b048f5ab76abf09f677eaa4c15146dfc81e76ca362ea86fcb993758.jpg",
+	"Ice blast", "/img/skills/ice_blast.jpg",
 	300, "INT", 10,
 	"MAG", 100
 );

@@ -1,0 +1,12 @@
+{
+    "idleHeartbeats": 168,
+    "navigatingHeartbeats": 229,
+    "totalCodingHeartbeats": 325,
+    "languageHeartbeats": {
+        "javascript": 325
+    },
+    "fileHeartbeats": {
+        "js/clases/heroes.js": 90,
+        "js/clases/skills.js": 235
+    }
+}

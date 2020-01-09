@@ -171,7 +171,7 @@ class Heroe {
 
 // Fuerza
 heroe_axe = new Heroe (
-	"Axe", "https://es.dotabuff.com/assets/heroes/axe-c50aa8d225ae00dd2a3c6016f726f7d07eecfae07cc853d13beb1168837db9dc.jpg",
+	"Axe", "/img/heroes/axe.jpg",
 	30, 15, 5,
 	2, 0, 0,
 	2000, 40, 5,
@@ -183,7 +183,7 @@ heroe_axe = new Heroe (
 );
 
 heroe_sven = new Heroe (
-	"Sven", "https://es.dotabuff.com/assets/heroes/sven-c43dfb9d167908ae71baef7df9a1259a08cb168a237be916cf72bf49efa389b7.jpg",
+	"Sven", "/img/heroes/sven.jpg",
 	35, 10, 5,
 	2, 0, 0,
 	1850, 40, 5,
@@ -198,7 +198,7 @@ heroe_sven = new Heroe (
 
 // Agilidad
 heroe_clinkz = new Heroe (
-	"Clinkz", "https://es.dotabuff.com/assets/heroes/clinkz-cb25ffdf344c24d992d225ed9a61767d6f8c0ac12a15ef733d1773f468e724b9.jpg",
+	"Clinkz", "/img/heroes/clinkz.jpg",
 	10, 25, 15,
 	0, 2, 1,
 	2000, 20, 20,
@@ -211,7 +211,7 @@ heroe_clinkz = new Heroe (
 
 
 heroe_phantomAssasin = new Heroe (
-	"Phantom Assasin", "https://es.dotabuff.com/assets/heroes/phantom-assassin-39fa845b71a1b8215f3fc8735f4a8d16a1d0e88b00fd8286388779399bf187ed.jpg",
+	"Phantom Assasin", "/img/heroes/phantom_assassin.jpg",
 	10, 40, 0,
 	0, 2, 1,
 	2000, 20, 20,
@@ -226,7 +226,7 @@ heroe_phantomAssasin = new Heroe (
 
 // Inteligencia
 heroe_lina = new Heroe (
-	"Lina", "https://es.dotabuff.com/assets/heroes/lina-8c8d6b1957d3652b7d1dd544497dfce81900a8d707d3ef016bc664cd63d4ffc7.jpg",
+	"Lina", "/img/heroes/lina.jpg",
 	5, 10, 35,
 	0, 3, 1,
 	1500, 15, 40,
@@ -238,7 +238,7 @@ heroe_lina = new Heroe (
 );
 
 heroe_ancientApparition = new Heroe (
-	"Ancient Apparition", "https://es.dotabuff.com/assets/heroes/ancient-apparition-f51db57a5e1ca4609fc30e195e71fbc220eb9dbe6e1db41b7d4cb431c91c7779.jpg",
+	"Ancient Apparition", "/img/heroes/ancient_apparition.jpg",
 	5, 5, 40,
 	0, 3, 1,
 	1500, 15, 40,
