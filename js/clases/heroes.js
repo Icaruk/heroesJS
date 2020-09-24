@@ -171,7 +171,7 @@ class Heroe {
 
 // Fuerza
 heroe_axe = new Heroe (
-	"Axe", "/img/heroes/axe.jpg",
+	"Axe", "img/heroes/axe.jpg",
 	30, 15, 5,
 	2, 0, 0,
 	2000, 40, 5,
@@ -183,7 +183,7 @@ heroe_axe = new Heroe (
 );
 
 heroe_sven = new Heroe (
-	"Sven", "/img/heroes/sven.jpg",
+	"Sven", "img/heroes/sven.jpg",
 	35, 10, 5,
 	2, 0, 0,
 	1850, 40, 5,
@@ -198,7 +198,7 @@ heroe_sven = new Heroe (
 
 // Agilidad
 heroe_clinkz = new Heroe (
-	"Clinkz", "/img/heroes/clinkz.jpg",
+	"Clinkz", "img/heroes/clinkz.jpg",
 	10, 25, 15,
 	0, 2, 1,
 	2000, 20, 20,
@@ -211,7 +211,7 @@ heroe_clinkz = new Heroe (
 
 
 heroe_phantomAssasin = new Heroe (
-	"Phantom Assasin", "/img/heroes/phantom_assassin.jpg",
+	"Phantom Assasin", "img/heroes/phantom_assassin.jpg",
 	10, 40, 0,
 	0, 2, 1,
 	2000, 20, 20,
@@ -226,7 +226,7 @@ heroe_phantomAssasin = new Heroe (
 
 // Inteligencia
 heroe_lina = new Heroe (
-	"Lina", "/img/heroes/lina.jpg",
+	"Lina", "img/heroes/lina.jpg",
 	5, 10, 35,
 	0, 3, 1,
 	1500, 15, 40,
@@ -238,7 +238,7 @@ heroe_lina = new Heroe (
 );
 
 heroe_ancientApparition = new Heroe (
-	"Ancient Apparition", "/img/heroes/ancient_apparition.jpg",
+	"Ancient Apparition", "img/heroes/ancient_apparition.jpg",
 	5, 5, 40,
 	0, 3, 1,
 	1500, 15, 40,
