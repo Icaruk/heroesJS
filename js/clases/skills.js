@@ -67,7 +67,7 @@ Tipo: ${this.tipo}
 
 // Físico
 AtaqueMelee = new Skill (
-	"Ataque melee", "/img/skills/wild_axes.jpg",
+	"Ataque melee", "img/skills/wild_axes.jpg",
 	200, "STR", 0.2,
 	"FIS", 0
 );
@@ -75,12 +75,12 @@ AtaqueMelee = new Skill (
 
 // Axe
 BattleHunger = new Skill (
-	"Battle hunger", "/img/skills/battle_hunger.jpg",
+	"Battle hunger", "img/skills/battle_hunger.jpg",
 	400, "STR", 2,
 	"FIS", 20
 );
 CullingBlade = new Skill (
-	"Culling blade", "/img/skills/culling_blade.jpg",
+	"Culling blade", "img/skills/culling_blade.jpg",
 	0, "STR", 8,
 	"FIS", 40
 );
@@ -88,12 +88,12 @@ CullingBlade = new Skill (
 
 // Sven
 HammerStorm = new Skill (
-	"Hammer storm", "/img/skills/hammer_storm.jpg",
+	"Hammer storm", "img/skills/hammer_storm.jpg",
 	300, "STR", 2.5,
 	"FIS", 20
 );
 GreatCleave = new Skill (
-	"Great cleave", "/img/skills/great_cleave.jpg",
+	"Great cleave", "img/skills/great_cleave.jpg",
 	600, "STR", 0.25,
 	"FIS", 40
 );
@@ -102,7 +102,7 @@ GreatCleave = new Skill (
 
 // Distancia
 AtaqueDistancia = new Skill (
-	"Ataque distancia", "/img/skills/marksmanship.jpg",
+	"Ataque distancia", "img/skills/marksmanship.jpg",
 	200, "AGI", 0.2,
 	"FIS", 0
 );
@@ -111,12 +111,12 @@ AtaqueDistancia = new Skill (
 
 // Clinkz
 SearingArrow = new Skill (
-	"Searing arrow", "/img/skills/searing_arrows.jpg",
+	"Searing arrow", "img/skills/searing_arrows.jpg",
 	200, "INT", 2,
 	"FIS", 45
 );
 Strafe = new Skill (
-	"Strafe", "/img/skills/death_pact.jpg",
+	"Strafe", "img/skills/death_pact.jpg",
 	800, "AGI", 0.2,
 	"FIS", 60
 );
@@ -124,12 +124,12 @@ Strafe = new Skill (
 
 // PA
 StiflingDagger = new Skill (
-	"Strafe", "/img/skills/stifling_dagger.jpg",
+	"Strafe", "img/skills/stifling_dagger.jpg",
 	250, "AGI", 0.4,
 	"FIS", 20
 );
 CoupDeGrace = new Skill (
-	"Strafe", "/img/skills/coup_de_grace.jpg",
+	"Strafe", "img/skills/coup_de_grace.jpg",
 	500, "AGI", 5,
 	"FIS", 100
 );
@@ -138,7 +138,7 @@ CoupDeGrace = new Skill (
 
 // Magico
 AtaqueMagico = new Skill (
-	"Ataque magico", "/img/skills/arcane_bolt.jpg",
+	"Ataque magico", "img/skills/arcane_bolt.jpg",
 	300, "INT", 0.3,
 	"MAG", 0
 );
@@ -147,12 +147,12 @@ AtaqueMagico = new Skill (
 
 // Lina
 DragonSlave = new Skill (
-	"Dragon slave", "/img/skills/dragon_slave.jpg",
+	"Dragon slave", "img/skills/dragon_slave.jpg",
 	500, "INT", 0.6,
 	"MAG", 25
 );
 LagunaBlade = new Skill (
-	"Laguna blade", "/img/skills/laguna_blade.jpg",
+	"Laguna blade", "img/skills/laguna_blade.jpg",
 	0, "INT", 20,
 	"MAG", 100
 );
@@ -160,12 +160,12 @@ LagunaBlade = new Skill (
 
 // AA
 ColdFeet = new Skill (
-	"Cold feet", "/img/skills/cold_feet.jpg",
+	"Cold feet", "img/skills/cold_feet.jpg",
 	200, "INT", 0.4,
 	"MAG", 20
 );
 IceBlast = new Skill (
-	"Ice blast", "/img/skills/ice_blast.jpg",
+	"Ice blast", "img/skills/ice_blast.jpg",
 	300, "INT", 10,
 	"MAG", 100
 );
